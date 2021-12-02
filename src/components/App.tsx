@@ -80,9 +80,14 @@ const App: FunctionComponent = () => {
     } 
   }, [dispatch])
 
-  const resetHandler = useCallback(() => {
+  const resetHandler = useCallback(async () => {
+    await dispatch({
+      type: IS_STOPWATCH_STOP,
+      payload: time
+    })
     setTime(0)
-  }, [])
+    setStatus("run")
+  }, [dispatch, time])
 
   return (
     <div className="ui container">
